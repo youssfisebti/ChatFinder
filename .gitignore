@@ -15,3 +15,6 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 /nbproject/private/
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
