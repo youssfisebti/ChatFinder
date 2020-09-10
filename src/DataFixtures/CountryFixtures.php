@@ -36,15 +36,17 @@ class CountryFixtures  extends Fixture implements OrderedFixtureInterface, Conta
     public function load(ObjectManager $manager)
     {
         $countries = $this->parseCSV();
-
+        $i = 0;
         if (count($countries) > 0) {
             foreach($countries as $data) {
                 $country = new Country();
                 $country->setCountryCode($data[1]);
                 $country->setCountryName($data[0]);
-
+                
                 $manager->persist($country);
+                $this->addReference('country_'.$i, $country);
 
+                $i++;
             }
             $manager->flush();
         }

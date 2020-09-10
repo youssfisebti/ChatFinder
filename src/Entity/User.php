@@ -24,13 +24,13 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @JMS\Groups(groups={"pharmacy"})
+     * @JMS\Groups(groups={"test"})
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
 
     /**
-     * @JMS\Groups(groups={"pharmacy"})
+     * @JMS\Groups(groups={"test"})
      * @var array
      * @ORM\Column(type="json")
      */

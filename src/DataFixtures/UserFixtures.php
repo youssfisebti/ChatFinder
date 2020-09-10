@@ -39,6 +39,6 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface,ContainerA
 
     public function getOrder()
     {
-        return 5;
+        return 2;
     }
 }
