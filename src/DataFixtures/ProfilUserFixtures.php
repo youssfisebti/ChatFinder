@@ -18,7 +18,7 @@ class ProfilUserFixtures extends Fixture implements OrderedFixtureInterface,Cont
     {
         $this->container = $container;
     }
-    public function load(ObjectManager $manager)
+   public function load(ObjectManager $manager)
     {
         for ($i = 1; $i < 5; $i++) {
 
