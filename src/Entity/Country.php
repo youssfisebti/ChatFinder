@@ -20,13 +20,13 @@ class Country
     private $id;
 
     /**
-     * @JMS\Groups(groups={"pharmacy", "drug"})
+     * @JMS\Groups(groups={"chatFinder"})
      * @ORM\Column(type="string", length=20)
      */
     private $countryCode;
 
     /**
-     * @JMS\Groups(groups={"pharmacy", "drug"})
+     * @JMS\Groups(groups={"chatFinder"})
      * @ORM\Column(type="string", length=200)
      */
     private $countryName;
