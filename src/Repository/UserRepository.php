@@ -45,6 +45,28 @@ class UserRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult()
         ;
+    }*/
+        /**
+     * @param string $criteria
+     * @param $limit
+     * @param $offset
+     * @return Paginator
+     */
+    public function findBySomeField($criteria, $limit, $offset)
+    {
+        $qb =  $this->createQueryBuilder('us');
+        if (!empty($criteria)) {
+            $qb->andWhere('us.email LIKE :val')
+                ->setParameter('val', '%'.$criteria.'%');
+        }
+        return $qb
+            ->orderBy('us.id', 'ASC')
+            ->setFirstResult(($offset - 1) * $limit)
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
     }
-    */
+    
+    
+    
 }

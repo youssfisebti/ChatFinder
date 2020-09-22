@@ -74,7 +74,7 @@ class Address
      * @JMS\Groups(groups={"chatFinder"})
      * @ORM\ManyToOne(targetEntity=Country::class, cascade={"persist","remove"})
      */
-    protected $country;
+    public $country;
 
     public function getId(): ?int
     {

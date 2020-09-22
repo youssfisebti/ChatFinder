@@ -30,6 +30,7 @@ class ProfilUserFixtures extends Fixture implements OrderedFixtureInterface,Cont
             $profilUser->setHeight(176,5);
             $profilUser->setWeight('7'.$i);
             $profilUser->setAddress($this->getReference('address_'.$i));
+            $this->addReference('profil_'.$i, $profilUser);
 
             $manager->persist($profilUser);
 
@@ -39,6 +40,6 @@ class ProfilUserFixtures extends Fixture implements OrderedFixtureInterface,Cont
 
     public function getOrder()
     {
-        return 4;
+        return 3;
     }
 }

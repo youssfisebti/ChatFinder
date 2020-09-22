@@ -10,7 +10,7 @@ class AuthenticationController extends AbstractFOSRestController
 {
 
     /**
-     * @Rest\Post("api/login_check", name="api_login_check")
+     * @Rest\Post("/login_check", name="api_login_check")
      *
      * @SWG\Response(
      *     response=200,
@@ -55,8 +55,6 @@ class AuthenticationController extends AbstractFOSRestController
      */
     public function authenticate()
     {
-        dump("herer");
-        die;
     }
 
 }

@@ -24,13 +24,13 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @JMS\Groups(groups={"test"})
+     * @JMS\Groups(groups={"user_profil"})
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
 
     /**
-     * @JMS\Groups(groups={"test"})
+     * @JMS\Groups(groups={"user_profil"})
      * @var array
      * @ORM\Column(type="json")
      */
@@ -42,6 +42,12 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @JMS\Groups(groups={"user_profil"})
+     * @ORM\OneToOne(targetEntity=ProfilUser::class, cascade={"persist","remove"})
+     */
+    protected $profil;
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -115,5 +121,24 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+    
+    
+    /**
+     * @return mixed
+     */
+    public function getProfil()
+    {
+        return $this->profil;
+    }
+
+    /**
+     * @param mixed $profil
+     * @return User
+     */
+    public function setProfil($profil)
+    {
+        $this->profil = $profil;
+        return $this;
     }
 }
