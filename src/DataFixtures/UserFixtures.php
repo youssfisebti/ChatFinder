@@ -20,7 +20,7 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface,ContainerA
     }
     public function load(ObjectManager $manager)
     {
-        for ($i = 1; $i < 10; $i++) {
+        for ($i = 1; $i < 5; $i++) {
 
             $encoder = $this->container->get('security.password_encoder');
             $user = new User();
@@ -29,6 +29,7 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface,ContainerA
             $encoded = $encoder->encodePassword($user, $plainPassword);
             $user->setPassword($encoded);
             $user->setRoles(['ROLE_USER']);
+            $user->setProfil($this->getReference('profil_'.$i));
             $this->addReference('user_'.$i, $user);
 
             $manager->persist($user);
@@ -39,6 +40,6 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface,ContainerA
 
     public function getOrder()
     {
-        return 2;
+        return 4;
     }
 }

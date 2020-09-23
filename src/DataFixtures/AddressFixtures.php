@@ -41,6 +41,6 @@ class AddressFixtures extends Fixture implements OrderedFixtureInterface,Contain
 
     public function getOrder()
     {
-        return 3;
+        return 2;
     }
 }

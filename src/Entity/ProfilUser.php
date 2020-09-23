@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ProfilUserRepository;
+use JMS\Serializer\Annotation as JMS;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,37 +19,43 @@ class ProfilUser
     private $id;
 
     /**
+     * @JMS\Groups(groups={"user_profil"})
      * @ORM\Column(type="string", length=100)
      */
     private $firstName;
     
     /**
+     * @JMS\Groups(groups={"user_profil"})
      * @ORM\Column(type="string", length=100)
      */
     private $lastName;
     
     /**
+     * @JMS\Groups(groups={"user_profil"})
      * @ORM\Column(type="datetime")
      */
     private $ddn;
-    
+
     /**
+     * @JMS\Groups(groups={"user_profil"})
      * @ORM\Column(type="integer")
      */
     private $phoneNumber;
-    
+  
     /**
+     * @JMS\Groups(groups={"user_profil"})
      * @ORM\Column(type="float")
      */
     private $height;
-    
+   
     /**
+     * @JMS\Groups(groups={"user_profil"})
      * @ORM\Column(type="float")
      */
     private $weight;
 
-
     /**
+     * @JMS\Groups(groups={"user_profil"})
      * @ORM\OneToOne(targetEntity=Address::class, cascade={"persist","remove"})
      */
     protected $address;

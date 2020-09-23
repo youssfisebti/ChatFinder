@@ -29,7 +29,7 @@ class InvitationFixtures  extends Fixture implements OrderedFixtureInterface, Co
 
    public function load(ObjectManager $manager)
     {
-        for ($i = 1; $i < 8; $i++) {
+        for ($i = 1; $i < 5; $i++) {
 
             $invitation = new Invitation();
             $invitation->setSender($this->getReference('user_'.$i));

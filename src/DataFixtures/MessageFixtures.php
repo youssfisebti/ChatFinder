@@ -20,7 +20,7 @@ class MessageFixtures extends Fixture implements OrderedFixtureInterface,Contain
     }
     public function load(ObjectManager $manager)
     {
-        for ($i = 1; $i < 8; $i++) {
+        for ($i = 1; $i < 4 ; $i++) {
             $j = $i+1;
             $message = new Message();
             $message->setSender($this->getReference('user_'.$i));
@@ -39,6 +39,6 @@ class MessageFixtures extends Fixture implements OrderedFixtureInterface,Contain
 
     public function getOrder()
     {
-        return 7;
+        return 6;
     }
 }

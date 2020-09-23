@@ -20,25 +20,25 @@ class Address
     private $id;
 
     /**
-     * @JMS\Groups(groups={"chatFinder"})
+     * @JMS\Groups(groups={"chatFinder", "user_profil"})
      * @ORM\Column(type="string", length=20)
      */
     private $streetNumber;
 
     /**
-     * @JMS\Groups(groups={"chatFinder"})
+     * @JMS\Groups(groups={"chatFinder", "user_profil"})
      * @ORM\Column(type="string", length=255)
      */
     private $streetName;
 
     /**
-     * @JMS\Groups(groups={"chatFinder"})
+     * @JMS\Groups(groups={"chatFinder", "user_profil"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $streetComplementary;
 
     /**
-     * @JMS\Groups(groups={"chatFinder"})
+     * @JMS\Groups(groups={"chatFinder", "user_profil"})
      * @ORM\Column(type="integer")
      */
     private $zipCode;
@@ -65,13 +65,13 @@ class Address
     private $updatedAt;
 
     /**
-     * @JMS\Groups(groups={"chatFinder"})
+     * @JMS\Groups(groups={"chatFinder", "user_profil"})
      * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $city;
 
     /**
-     * @JMS\Groups(groups={"chatFinder"})
+     * @JMS\Groups(groups={"chatFinder", "user_profil"})
      * @ORM\ManyToOne(targetEntity=Country::class, cascade={"persist","remove"})
      */
     protected $country;
