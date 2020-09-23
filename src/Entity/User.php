@@ -43,12 +43,19 @@ class User implements UserInterface
      */
     private $password;
 
-    /**
-     * @JMS\Groups(groups={"user_profil"})
-     * @ORM\OneToOne(targetEntity=ProfilUser::class, cascade={"persist","remove"})
-     */
-    protected $profil;
-    
+
+     /**
+      * @JMS\Groups(groups={"user_profil"})
+      * @ORM\OneToOne(targetEntity=ProfilUser::class,  inversedBy="user", cascade={"persist","remove"})
+      * @ORM\JoinColumn(name="profile_id", referencedColumnName="id",nullable=true)
+      */
+     private $profil;
+
+    public function __construct()
+    {
+        $this->roles = array('ROLE_USER');
+    }
+
     public function getId(): ?int
     {
         return $this->id;

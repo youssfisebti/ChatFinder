@@ -21,6 +21,9 @@ use App\Service\ErrorService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use App\ValueObject\DefaultParameters;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
 
 class UserManagementController extends AbstractFOSRestController
@@ -82,5 +85,64 @@ class UserManagementController extends AbstractFOSRestController
         $view->setContext($context);
         return $view;
     }
-    
+
+  /**
+     * @Rest\Post("/user/register", name="api_register_user")
+     * @Rest\QueryParam(name="email", strict=false,   nullable=false)
+     * @Rest\QueryParam(name="password", strict=false,  nullable=true)
+     * @Rest\QueryParam(name="password_confirmation", strict=false, nullable=true)
+     */
+    public function register(paramFetcher $paramFetcher, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $om)
+    {
+        $context = new Context();
+        $groups = ['user_profil'];
+        $responseCode = Response::HTTP_OK;
+        $response = [
+            "totalItems" => 1,
+            "items" => 10
+        ];
+
+        $email= $paramFetcher->get('email') ?? $this->getParameter('email');
+        $password = $paramFetcher->get('password') ?? $this->getParameter('password');
+        $passwordConfirmation= $paramFetcher->get('password_confirmation') ?? $this->getParameter('password_confirmation');
+
+        $errors = [];
+        $user = new User();
+        if($password != $passwordConfirmation)
+        {
+             $errors[] = "Password does not match the password confirmation.";
+        }
+        if(strlen($password) < 6)
+        {
+           $errors[] = "Password should be at least 6 characters.";
+        }
+
+        if(!$errors)
+        {
+           $encodedPassword = $passwordEncoder->encodePassword($user, $password);
+           $user->setEmail($email);
+           $user->setPassword($encodedPassword);
+
+         try
+         {
+            $om->persist($user);
+            $om->flush();
+            return $this->json([
+                'user' => $user
+            ]);
+         }
+         catch(UniqueConstraintViolationException $e)
+         {
+            $errors[] = "The email provided already has an account!";
+         }
+         catch(\Exception $e)
+         {
+            $errors[] = "Unable to save new user at this time.";
+         }
+
+          return $this->json([
+              'errors' => $errors
+          ], 400);
+    }
+}
 }

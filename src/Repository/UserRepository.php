@@ -57,7 +57,7 @@ class UserRepository extends ServiceEntityRepository
     {
         $qb =  $this->createQueryBuilder('us');
         if (!empty($criteria)) {
-            $qb->andWhere('us.mail LIKE :val')
+            $qb->andWhere('us.email LIKE :val')
                 ->setParameter('val', '%'.$criteria.'%');
         }
         return $qb

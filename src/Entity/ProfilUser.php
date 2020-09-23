@@ -55,11 +55,18 @@ class ProfilUser
     private $weight;
 
     /**
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="profil")
+     *
+     */
+    private $user;
+
+
+    /**
      * @JMS\Groups(groups={"user_profil"})
      * @ORM\OneToOne(targetEntity=Address::class, cascade={"persist","remove"})
      */
     protected $address;
-    
+
     public function getId(): ?int
     {
         return $this->id;
