@@ -26,7 +26,7 @@ class Country
     private $countryCode;
 
     /**
-     * @JMS\Groups(groups={"chatFinder"})
+     * @JMS\Groups(groups={"chatFinder", "user_profil"})
      * @ORM\Column(type="string", length=200)
      */
     private $countryName;
